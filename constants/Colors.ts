@@ -1,21 +1,32 @@
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
+import { ThemeMode } from "@/context/ThemeContext";
 
-export const Colors = {
+type ColorScheme = {
+  primary: string;
+  secondary: string;
+  tertiary: string;
+  accent: string;
+  text: string;
+  tint: string;
+  background: string;
+};
+
+export const Colors: Record<Exclude<ThemeMode, "system">, ColorScheme> = {
   light: {
-    text: '#11181C',
-    background: '#fff',
-    tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
+    primary: "#25D366",
+    secondary: "#c2f8cb",
+    tertiary: "#075e54",
+    accent: '#f5f3f4',
+    text: '#020202',
+    tint: "#c7ccdb",
+    background: '#ffffff'
   },
   dark: {
-    text: '#ECEDEE',
-    background: '#151718',
-    tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
+    primary: "#25D366",
+    secondary: "#075E54",
+    tertiary: "#d8f3dc",
+    accent: '#495057',
+    text: '#FFFFFF',
+    tint: "#adb5bd",
+    background: '#273443'
   },
 };
