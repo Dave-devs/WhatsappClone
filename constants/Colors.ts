@@ -8,6 +8,8 @@ type ColorScheme = {
   text: string;
   tint: string;
   background: string;
+  activeIcon: string;
+  inactiveIcon: string;
 };
 
 export const Colors: Record<Exclude<ThemeMode, "system">, ColorScheme> = {
@@ -16,9 +18,11 @@ export const Colors: Record<Exclude<ThemeMode, "system">, ColorScheme> = {
     secondary: "#c2f8cb",
     tertiary: "#075e54",
     accent: '#f5f3f4',
-    text: '#020202',
+    text: '#000000',
     tint: "#c7ccdb",
-    background: '#ffffff'
+    background: '#ffffff',
+    activeIcon: '#075e54',
+    inactiveIcon: '#000000'
   },
   dark: {
     primary: "#25D366",
@@ -27,6 +31,8 @@ export const Colors: Record<Exclude<ThemeMode, "system">, ColorScheme> = {
     accent: '#495057',
     text: '#FFFFFF',
     tint: "#adb5bd",
-    background: '#273443'
+    background: '#273443',
+    activeIcon: '#d8f3dc',
+    inactiveIcon: '#FFFFFF'
   },
 };

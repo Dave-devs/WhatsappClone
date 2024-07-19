@@ -1,20 +1,22 @@
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
+import { View } from 'react-native'
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
 import { Appearance } from "react-native";
 import { ThemeContext, ThemeMode } from "@/context/ThemeContext";
 import { getData, storeData } from "@/config/asyncStorage";
+import { StatusBar } from "expo-status-bar";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts({
-    nunito: require("../assets/fonts/Nunito-Regular.ttf"),
-    nunitoM: require("../assets/fonts/Nunito-Medium.ttf"),
-    nunitoSB: require("../assets/fonts/Nunito-SemiBold.ttf"),
-    nunitoB: require("../assets/fonts/Nunito-Bold.ttf"),
+    nunito: require("@/assets/fonts/Nunito-Regular.ttf"),
+    nunitoM: require("@/assets/fonts/Nunito-Medium.ttf"),
+    nunitoSB: require("@/assets/fonts/Nunito-SemiBold.ttf"),
+    nunitoB: require("@/assets/fonts/Nunito-Bold.ttf"),
   });
 
   const [theme, setTheme] = useState<{ mode: ThemeMode }>({ mode: "system" });
@@ -66,12 +68,13 @@ export default function RootLayout() {
   }, [fontsLoaded, fontError]);
 
   if (!fontsLoaded && !fontError) {
-    return null;
+    return <View />;
   }
 
   return (
     <ThemeContext.Provider value={{ mode: theme.mode, updateTheme }}>
       <RootLayoutNav />
+      <StatusBar style={theme.mode === "dark" ? "light" : "dark"} />
     </ThemeContext.Provider>
   );
 }
@@ -80,7 +83,6 @@ function RootLayoutNav() {
   return (
     <Stack>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="screens/calls" options={{ headerShown: false }} />
     </Stack>
   );
 }
