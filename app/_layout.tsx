@@ -8,6 +8,8 @@ import { ThemeContext, ThemeMode } from "@/context/ThemeContext";
 import { getData, storeData } from "@/config/asyncStorage";
 import { StatusBar } from "expo-status-bar";
 
+export { ErrorBoundary } from "expo-router";
+export const unstable_settings = { initialRouteName: "screens/verify" };
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
@@ -82,7 +84,11 @@ export default function RootLayout() {
 function RootLayoutNav() {
   return (
     <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> */}
+      <Stack.Screen name="screens/welcome" options={{ headerShown: false }} />
+      <Stack.Screen name="screens/otp" options={{ headerShown: false, headerBackVisible: false }} />
+      <Stack.Screen name="screens/contact-picker" options={{ headerShown: false, headerBackVisible: false }} />
+      <Stack.Screen name="screens/verify" options={{ headerShown: false }} />
     </Stack>
   );
 }

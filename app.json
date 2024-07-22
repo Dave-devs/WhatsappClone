@@ -54,7 +54,13 @@
     },
     "plugins": [
       "expo-router",
-      "expo-font"
+      "expo-font",
+      [
+        "expo-contacts",
+        {
+          "contactsPermission": "Allow WhatsApp to access your contacts."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
