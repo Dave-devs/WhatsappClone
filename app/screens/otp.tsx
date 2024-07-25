@@ -1,41 +1,106 @@
 import {
+  ActivityIndicator,
   Alert,
   Appearance,
-  FlatList,
   KeyboardAvoidingView,
-  Linking,
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
 } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
-import { ThemeContext, ThemeMode } from "@/context/ThemeContext";
+import { ThemeContext } from "@/context/ThemeContext";
 import { Colors } from "@/constants/Colors";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { defaultStyles } from "@/constants/Styles";
-import * as Contacts from "expo-contacts";
 import Button from "@/components/CustomComponets/Button";
+import {
+  isClerkAPIResponseError,
+  useSignIn,
+  useSignUp,
+} from "@clerk/clerk-expo";
 
 const OtpScreen = () => {
   const router = useRouter();
   const insets = useSafeAreaInsets();
 
-  const params = useLocalSearchParams<{ phoneNumber: string }>();
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { signUp, setActive } = useSignUp();
+  const { signIn } = useSignIn();
+
+  const params = useLocalSearchParams<{ phoneNumber: string }>();
+
   useEffect(() => {
     if (params.phoneNumber) {
       try {
         const parsedPhoneNumber = JSON.parse(params.phoneNumber);
         setPhoneNumber(parsedPhoneNumber);
       } catch (error) {
-        Alert.alert('Error', 'Failed to parse phone number');
+        Alert.alert("Error", "Failed to parse phone number");
       }
     }
   }, [params.phoneNumber]);
+
+  const trySignIn = async () => {
+    console.log('trySignIn', phoneNumber);
+
+    const { supportedFirstFactors } = await signIn!.create({
+      identifier: phoneNumber,
+    });
+
+    const firstPhoneFactor: any = supportedFirstFactors.find((factor: any) => {
+      return factor.strategy === 'phone_code';
+    });
+
+    const { phoneNumberId } = firstPhoneFactor;
+
+    await signIn!.prepareFirstFactor({
+      strategy: 'phone_code',
+      phoneNumberId,
+    });
+
+    router.push({
+      pathname: "screens/verify",
+      params: {
+        phoneNumber: phoneNumber,
+        signin: "true",
+      },
+    });
+    setLoading(false);
+  };
+
+  const sendOtp = async () => {
+    console.log("Sending OTP", phoneNumber);
+    setLoading(true);
+
+    try {
+      await signUp!.create({ phoneNumber });
+
+      console.log("TESafter createT: ", signUp!.createdSessionId);
+      signUp!.preparePhoneNumberVerification();
+
+      console.log("after prepare: ");
+      router.push({
+        pathname: "screens/verify",
+        params: {
+          phoneNumber: phoneNumber,
+        },
+      });
+    } catch (err) {
+      console.log('error', JSON.stringify(err, null, 2));
+      if (isClerkAPIResponseError(err)) {
+        if (err.errors[0].code === "form_identifier_exists") {
+          console.log("User already exists");
+          await trySignIn();
+        } else {
+          setLoading(false);
+          Alert.alert("Error", err.errors[0].message);
+        }
+      }
+    }
+  };
 
   // Theme
   const { mode } = useContext(ThemeContext);
@@ -57,6 +122,14 @@ const OtpScreen = () => {
         paddingTop: insets.top,
       }}
     >
+      {loading && (
+        <View
+          style={[styles.loading, { backgroundColor: activeColors.background }]}
+        >
+          <ActivityIndicator size={"large"} color={activeColors.primary} />
+          <Text style={[{color: activeColors.text}, styles.loadingText]}>Sending code...</Text>
+        </View>
+      )}
       <View style={styles.headerBox}>
         <Text style={[styles.headerText, { color: activeColors.text }]}>
           Enter your phone number
@@ -72,7 +145,10 @@ const OtpScreen = () => {
         <Text style={[styles.headerSubText, { color: activeColors.text }]}>
           WhatsApp will need to verify your phone number. Carrier charges may
           apply.{" "}
-          <Text onPress={() => router.push('screens/contact-picker')} style={{ color: "#00bbf9" }}>
+          <Text
+            onPress={() => router.push("screens/contact-picker")}
+            style={{ color: "#00bbf9" }}
+          >
             What's my number?
           </Text>
         </Text>
@@ -98,7 +174,7 @@ const OtpScreen = () => {
         <View style={styles.textInputBox}>
           {/* Country Code */}
           <View style={{ flex: 1, paddingTop: 20 }}>
-            <Text style={[{ color: activeColors.tint }, styles.countryCode]}>
+            <Text style={styles.countryCode}>
               + <Text style={{ color: activeColors.text }}>234</Text>
             </Text>
             <View
@@ -113,8 +189,8 @@ const OtpScreen = () => {
           <View style={{ flex: 3, paddingTop: 20 - 2 }}>
             <TextInput
               placeholder="Phone number"
-              value={phoneNumber.slice(4, phoneNumber.length)}
-              onChangeText={number => setPhoneNumber(number)}
+              value={phoneNumber}
+              onChangeText={(text) => setPhoneNumber(text)}
               numberOfLines={1}
               placeholderTextColor={activeColors.tint}
               focusable={true}
@@ -134,7 +210,7 @@ const OtpScreen = () => {
       <View style={{ flex: 1 }} />
 
       {/* Agree Button */}
-      <Button text="Next" onPress={() => router.push("screens/verify")} />
+      <Button text="Next" onPress={sendOtp} />
     </KeyboardAvoidingView>
   );
 };
@@ -195,9 +271,20 @@ const styles = StyleSheet.create({
   countryCode: {
     fontFamily: "nunitoSB",
     fontSize: 15,
+    color: 'grey'
   },
   phoneNumber: {
     fontFamily: "nunitoSB",
     fontSize: 15,
   },
+  loading: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: 10
+  },
+  loadingText: {
+    fontFamily: "nunito",
+    fontSize: 15,
+  }
 });
