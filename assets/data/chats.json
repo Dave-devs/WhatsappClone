@@ -1,0 +1,212 @@
+[
+  {
+    "id": 1,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/female/71.jpg",
+    "name": "Alice",
+    "lastMsg": "Hey, how are you?",
+    "date": "yesterday"
+  },
+  {
+    "id": 2,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/male/48.jpg",
+    "name": "Bob",
+    "lastMsg": "Let's catch up soon.",
+    "date": "3:30"
+  },
+  {
+    "id": 3,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/male/65.jpg",
+    "name": "Charlie",
+    "lastMsg": "Just finished the project!",
+    "date": "6/7/24"
+  },
+  {
+    "id": 4,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/female/2.jpg",
+    "name": "Diana",
+    "lastMsg": "Can you send me the files?",
+    "date": "yesterday"
+  },
+  {
+    "id": 5,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/male/5.jpg",
+    "name": "Edward",
+    "lastMsg": "Are you free this weekend?",
+    "date": "10:00"
+  },
+  {
+    "id": 6,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/female/17.jpg",
+    "name": "Fiona",
+    "lastMsg": "Got your email, thanks!",
+    "date": "6/7/24"
+  },
+  {
+    "id": 7,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/male/45.jpg",
+    "name": "George",
+    "lastMsg": "Let’s meet for lunch.",
+    "date": "2:15"
+  },
+  {
+    "id": 8,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/female/26.jpg",
+    "name": "Hannah",
+    "lastMsg": "Did you get the package?",
+    "date": "yesterday"
+  },
+  {
+    "id": 9,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/male/36.jpg",
+    "name": "Ian",
+    "lastMsg": "Great job on the presentation!",
+    "date": "3:30"
+  },
+  {
+    "id": 10,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/male/52.jpg",
+    "name": "Jack",
+    "lastMsg": "Let’s discuss the details.",
+    "date": "6/7/24"
+  },
+  {
+    "id": 11,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/female/69.jpg",
+    "name": "Karen",
+    "lastMsg": "Can you review the document?",
+    "date": "yesterday"
+  },
+  {
+    "id": 12,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/male/72.jpg",
+    "name": "Louis",
+    "lastMsg": "Don’t forget the meeting.",
+    "date": "4:00"
+  },
+  {
+    "id": 13,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/female/65.jpg",
+    "name": "Mia",
+    "lastMsg": "I’ll call you later.",
+    "date": "6/7/24"
+  },
+  {
+    "id": 14,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/male/62.jpg",
+    "name": "Nathan",
+    "lastMsg": "Where should we go?",
+    "date": "9:30"
+  },
+  {
+    "id": 15,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/female/43.jpg",
+    "name": "Olivia",
+    "lastMsg": "Thanks for the update!",
+    "date": "yesterday"
+  },
+  {
+    "id": 16,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/male/42.jpg",
+    "name": "Paul",
+    "lastMsg": "See you tomorrow.",
+    "date": "1:00"
+  },
+  {
+    "id": 17,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/female/10.jpg",
+    "name": "Quinn",
+    "lastMsg": "Check out the new feature.",
+    "date": "6/7/24"
+  },
+  {
+    "id": 18,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/female/57.jpg",
+    "name": "Rachel",
+    "lastMsg": "Are you free for a call?",
+    "date": "5:30"
+  },
+  {
+    "id": 19,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/male/26.jpg",
+    "name": "Steve",
+    "lastMsg": "Let’s finalize the plans.",
+    "date": "yesterday"
+  },
+  {
+    "id": 20,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/female/28.jpg",
+    "name": "Tina",
+    "lastMsg": "Could you send me that link?",
+    "date": "6/7/24"
+  },
+  {
+    "id": 21,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/female/64.jpg",
+    "name": "Ulysses",
+    "lastMsg": "Meeting at 3 PM.",
+    "date": "3:00"
+  },
+  {
+    "id": 22,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/female/29.jpg",
+    "name": "Vera",
+    "lastMsg": "We need to reschedule.",
+    "date": "yesterday"
+  },
+  {
+    "id": 23,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/male/20.jpg",
+    "name": "Will",
+    "lastMsg": "Can you help with this?",
+    "date": "6/7/24"
+  },
+  {
+    "id": 24,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/female/35.jpg",
+    "name": "Xena",
+    "lastMsg": "I’ve got the details.",
+    "date": "11:00"
+  },
+  {
+    "id": 25,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/female/15.jpg",
+    "name": "Yara",
+    "lastMsg": "Looking forward to it!",
+    "date": "yesterday"
+  },
+  {
+    "id": 26,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/male/74.jpg",
+    "name": "Zane",
+    "lastMsg": "Can you confirm the time?",
+    "date": "2:45"
+  },
+  {
+    "id": 27,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/female/7.jpg",
+    "name": "Anna",
+    "lastMsg": "Need your feedback.",
+    "date": "6/7/24"
+  },
+  {
+    "id": 28,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/male/41.jpg",
+    "name": "Brian",
+    "lastMsg": "Let’s set a deadline.",
+    "date": "4:30"
+  },
+  {
+    "id": 29,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/female/60.jpg",
+    "name": "Catherine",
+    "lastMsg": "Please review this ASAP.",
+    "date": "yesterday"
+  },
+  {
+    "id": 30,
+    "imageUrl": "https://xsgames.co/randomusers/assets/avatars/male/39.jpg",
+    "name": "David",
+    "lastMsg": "Confirming our appointment.",
+    "date": "6/7/24"
+  }
+]

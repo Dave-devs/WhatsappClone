@@ -1,12 +1,6 @@
-import { Appearance, StyleSheet, View } from "react-native";
+import { Appearance, StyleSheet, View, Image } from "react-native";
 import React, { useContext } from "react";
 import { ThemeContext, ThemeMode } from "@/context/ThemeContext";
-import {
-  FontAwesome,
-  FontAwesome5,
-  Ionicons,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import { Colors } from "@/constants/Colors";
 
@@ -32,6 +26,8 @@ export default function _layout() {
           height: 55,
           elevation: 0,
           backgroundColor: activeColors.background,
+          shadowOpacity: 0,
+          borderTopColor: activeColors.background,
         },
         tabBarLabelStyle: {
           fontFamily: "nunitoB",
@@ -52,17 +48,17 @@ export default function _layout() {
                   styles.activeIconBox,
                 ]}
               >
-                <MaterialCommunityIcons
-                  name="message-reply-text"
-                  size={24}
-                  color={activeColors.activeIcon}
+                <Image
+                  source={require("@/assets/images/comment.png")}
+                  style={styles.activeIcon}
+                  tintColor={activeColors.activeIcon}
                 />
               </View>
             ) : (
-              <MaterialCommunityIcons
-                name="message-reply-text"
-                size={24}
-                color={activeColors.inactiveIcon}
+              <Image
+                source={require("@/assets/images/comment-filled.png")}
+                style={styles.activeIcon}
+                tintColor={activeColors.inactiveIcon}
               />
             ),
         }}
@@ -80,17 +76,17 @@ export default function _layout() {
                   styles.activeIconBox,
                 ]}
               >
-                <FontAwesome
-                  name="whatsapp"
-                  size={24}
-                  color={activeColors.activeIcon}
+                <Image
+                  source={require("@/assets/images/update.png")}
+                  style={styles.activeIcon}
+                  tintColor={activeColors.activeIcon}
                 />
               </View>
             ) : (
-              <FontAwesome
-                name="whatsapp"
-                size={24}
-                color={activeColors.inactiveIcon}
+              <Image
+                source={require("@/assets/images/update-filled.png")}
+                style={styles.activeIcon}
+                tintColor={activeColors.inactiveIcon}
               />
             ),
         }}
@@ -108,17 +104,17 @@ export default function _layout() {
                   styles.activeIconBox,
                 ]}
               >
-                <FontAwesome5
-                  name="users"
-                  size={24}
-                  color={activeColors.inactiveIcon}
+                <Image
+                  source={require("@/assets/images/communities.png")}
+                  style={styles.activeIcon}
+                  tintColor={activeColors.activeIcon}
                 />
               </View>
             ) : (
-              <FontAwesome5
-                name="users"
-                size={24}
-                color={activeColors.inactiveIcon}
+              <Image
+                source={require("@/assets/images/communities-filled.png")}
+                style={styles.activeIcon}
+                tintColor={activeColors.inactiveIcon}
               />
             ),
         }}
@@ -136,17 +132,20 @@ export default function _layout() {
                   styles.activeIconBox,
                 ]}
               >
-                <Ionicons
-                  name="call"
-                  size={20}
-                  color={activeColors.activeIcon}
+                <Image
+                  source={require("@/assets/images/call.png")}
+                  style={[
+                    styles.activeIcon,
+                    { maxHeight: 18, maxWidth: 18 },
+                  ]}
+                  tintColor={activeColors.activeIcon}
                 />
               </View>
             ) : (
-              <Ionicons
-                name="call"
-                size={20}
-                color={activeColors.inactiveIcon}
+              <Image
+                source={require("@/assets/images/call-filled.png")}
+                style={[styles.activeIcon, { maxHeight: 18, maxWidth: 18 }]}
+                tintColor={activeColors.inactiveIcon}
               />
             ),
         }}
@@ -157,14 +156,16 @@ export default function _layout() {
 
 const styles = StyleSheet.create({
   activeIconBox: {
+    height: 30,
+    width: 60,
     borderRadius: 50,
-    paddingHorizontal: 16,
-    paddingVertical: 1,
-    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "center",
   },
   activeIcon: {
-    width: 24,
-    height: 24,
+    width: 23,
+    height: 23,
+    resizeMode: "center",
   },
   activeLabel: {
     fontFamily: "nunito",
