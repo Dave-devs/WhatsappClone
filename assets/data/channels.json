@@ -1,0 +1,52 @@
+[
+    {
+        "id": "1",
+        "name": "Chelsea FC",
+        "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6fMXraqVu_K4rzrIMAjRm3K4OsDYnO5UJBA&s"
+    },
+    {
+        "id": "2",
+        "name": "Donald Trump",
+        "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyemxyWev-qUeWqbZU7RRlXCB5qE9n6Ljsvg&s"
+    },
+    {
+        "id": "3",
+        "name": "Davido",
+        "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ_MS6Cw4T_DZLQKQ5rwwDZ7L03SIC9w30pA&s"
+    },
+    {
+        "id": "4",
+        "name": "Taylor Swift",
+        "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTj4vo6w0TLVBzivyF0gPFYysvNjWJZ4YVDJQ&s"
+    },
+    {
+        "id": "5",
+        "name": "Chris Hemsworth",
+        "imageUrl": "https://cdn.shopify.com/s/files/1/2384/0833/files/celebrity-with-short-hair-Chris-Hemsworth-1419x1536_jpg_1024x1024.webp?v=1681845216"
+    },
+    {
+        "id": "6",
+        "name": "Leonardo DiCaprio",
+        "imageUrl": "https://cdn.shopify.com/s/files/1/2384/0833/files/leonardo-dicaprio_1024x1024.jpg?v=1581725831"
+    },
+    {
+        "id": "7",
+        "name": "Messi",
+        "imageUrl": "https://media.architecturaldigest.com/photos/637949b3407644b8cdc8947f/16:9/w_2560%2Cc_limit/1442809583"
+    },
+    {
+        "id": "8",
+        "name": "Ronaldo",
+        "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfbnboWsUdOERdEgKJddVdAwkAXxn68ZmHrg&s"
+    },
+    {
+        "id": "9",
+        "name": "Cole Palmer",
+        "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhpF3Ow7jJew4BXDtTyrl0TWvz5Z1Ohx-yZw&s"
+    },
+    {
+        "id": "10",
+        "name": "Jackie Chan",
+        "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0UTxXHly2_CMzngLZnPOVKONuZvfguzBKww&s"
+    }
+]

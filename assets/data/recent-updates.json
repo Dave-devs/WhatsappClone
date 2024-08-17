@@ -1,0 +1,52 @@
+[
+  {
+    "id": "3f8aab84-d949-4e85-a103-479b3f799d6c",
+    "name": "Odessa",
+    "status": [
+      {
+        "image": "https://images.unsplash.com/photo-1496449903678-68ddcb189a24?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cmFuZG9tfGVufDB8fDB8fHww",
+        "date": "yesterday"
+      }
+    ]
+  },
+  {
+    "id": "1a2b3c4d-5678-90ab-cdef-1234567890ab",
+    "name": "John",
+    "status": [
+      {
+        "image": "https://images.unsplash.com/photo-1504805572947-34fad45aed93?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cmFuZG9tfGVufDB8fDB8fHww",
+        "date": "3:30"
+      }
+    ]
+  },
+  {
+    "id": "2345abcd-6789-ef01-2345-67890abcdef1",
+    "name": "Emma",
+    "status": [
+      {
+        "image": "https://plus.unsplash.com/premium_photo-1679314213957-909df10381ac?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHJhbmRvbXxlbnwwfHwwfHx8MA%3D%3D",
+        "date": "6:16"
+      }
+    ]
+  },
+  {
+    "id": "3456bcde-7890-0123-4567-8901bcdef234",
+    "name": "Liam",
+    "status": [
+      {
+        "image": "https://media.istockphoto.com/id/1454856143/photo/man-hand-is-holding-playing-cards-on-the-table.webp?b=1&s=612x612&w=0&k=20&c=h3ZOiMoFjLiTvIurpPXAvYBPIPSe3J-QHrKSSbTFL9g=",
+        "date": "16:17"
+      }
+    ]
+  },
+  {
+    "id": "4567cdef-8901-2345-6789-0123cdef3456",
+    "name": "Ava",
+    "status": [
+      {
+        "image": "https://media.istockphoto.com/id/1454856143/photo/man-hand-is-holding-playing-cards-on-the-table.webp?b=1&s=612x612&w=0&k=20&c=h3ZOiMoFjLiTvIurpPXAvYBPIPSe3J-QHrKSSbTFL9g=",
+        "date": "8:30"
+      }
+    ]
+  }
+]

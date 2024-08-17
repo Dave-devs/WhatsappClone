@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1234f456-5678-9012-3456-7890f1234567",
+    "name": "Benjamin",
+    "status": [
+      {
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbyeA8guTYRz2S2t98NCPchL6opWk4gL4VEA&s",
+        "date": "20:07"
+      }
+    ]
+  },
+  {
+    "id": "2345f567-6789-0123-4567-8901f2345678",
+    "name": "Charlotte",
+    "status": [
+      {
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYT4lTqjKWrdxBEB2Pz58fEZ1dFGSoAyJZgw&s",
+        "date": "20:07"
+      }
+    ]
+  },
+  {
+    "id": "3456f678-7890-1234-5678-9012f3456789",
+    "name": "Alexander",
+    "status": [
+      {
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSacrcEDmpGU_hLixmRLp1Ies6Rs1BdoXWRkQ&s",
+        "date": "20:07"
+      }
+    ]
+  },
+  {
+    "id": "4567f789-8901-2345-6789-0123f4567890",
+    "name": "Amelia",
+    "status": [
+      {
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJOFpTkdDJjXM8hMBEwLSyvvAMeXtIVqX3zQ&s",
+        "date": "20:07"
+      }
+    ]
+  }
+]

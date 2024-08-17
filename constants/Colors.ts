@@ -11,31 +11,34 @@ type ColorScheme = {
   activeIcon: string;
   inactiveIcon: string;
   chip: string;
+  statusIcon: string;
 };
 
 export const Colors: Record<Exclude<ThemeMode, "system">, ColorScheme> = {
   light: {
-    primary: "#25D366",
+    primary: "#22c35d",
     secondary: "#c2f8cb",
     tertiary: "#075e54",
     accent: '#f5f3f4',
     text: '#000000',
-    tint: "#c7ccdb",
+    tint: "#c3cad5",
     background: '#ffffff',
     activeIcon: '#075e54',
     inactiveIcon: '#000000',
-    chip: ''
+    chip: '',
+    statusIcon: '#FFFFFF'
   },
   dark: {
-    primary: "#2ec4b6",
+    primary: "#00e600",
     secondary: "#075E54",
     tertiary: "#d8f3dc",
-    accent: '#0d1b2a',
+    accent: '#343a40',
     text: '#FFFFFF',
-    tint: "#adb5bd",
+    tint: "#a5afc0",
     background: '#001219',
     activeIcon: '#d8f3dc',
     inactiveIcon: '#FFFFFF',
-    chip: ''
+    chip: '',
+    statusIcon: '#000000'
   },
 };

@@ -8,6 +8,7 @@ import { getData, storeData } from "@/config/asyncStorage";
 import { StatusBar } from "expo-status-bar";
 import { ClerkProvider, ClerkLoaded, useAuth } from '@clerk/clerk-expo'
 import * as SecureStore from 'expo-secure-store'
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 // Cache Expo JWT token
 const tokenCache = {
@@ -110,7 +111,9 @@ export default function RootLayout() {
     <ClerkProvider tokenCache={tokenCache} publishableKey={publishableKey}>
       <ClerkLoaded>
         <ThemeContext.Provider value={{ mode: theme.mode, updateTheme }}>
-          <RootLayoutNav />
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <RootLayoutNav />
+          </GestureHandlerRootView>
           <StatusBar style={theme.mode === "dark" ? "light" : "dark"} />
         </ThemeContext.Provider>
         <AuthRedirect />
@@ -143,10 +146,10 @@ function AuthRedirect() {
 
     if (isSignedIn && !inTabsGroup) {
       // router.replace("(tabs)/chats");
-      router.replace("(tabs)/chats");
+      router.replace("/(tabs)/updates");
     } else if (!isSignedIn) {
       // router.replace('screens/welcome');
-      router.replace("(tabs)/chats");
+      router.replace("/(tabs)/updates");
     }
   }, [isLoaded, isSignedIn]);
 

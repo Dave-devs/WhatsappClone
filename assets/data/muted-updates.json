@@ -1,0 +1,52 @@
+[
+  {
+    "id": "5678def0-9012-3456-7890-1234def45678",
+    "name": "Noah",
+    "status": [
+      {
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMaL8ADYeMTI_d05vO12jbizVKahEtBc_nmQ&s",
+        "date": "19:21"
+      }
+    ]
+  },
+  {
+    "id": "6789ef01-0123-4567-8901-2345ef678901",
+    "name": "Sophia",
+    "status": [
+      {
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNzd27DXWYNKY3GQZAs_JekWyIqBoZ9DnrZg&s",
+        "date": "19:21"
+      }
+    ]
+  },
+  {
+    "id": "8901f123-2345-6789-0123-4567f8901234",
+    "name": "Isabella",
+    "status": [
+      {
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3fv4PxL61IpMd5kDtri2mcJSWxNs6AK6WGg&s",
+        "date": "19:21"
+      }
+    ]
+  },
+  {
+    "id": "9012f234-3456-7890-1234-5678f9012345",
+    "name": "Ethan",
+    "status": [
+      {
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS_M-x_8vYoiLGIlkXcC3TTsW16ElZcK7Udw&s",
+        "date": "19:21"
+      }
+    ]
+  },
+  {
+    "id": "0123f345-4567-8901-2345-6789f0123456",
+    "name": "Mia",
+    "status": [
+      {
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd53BzXDCt7fdY85bQRZcprE7vteyqrXIyZw&s",
+        "date": "19:21"
+      }
+    ]
+  }
+]
