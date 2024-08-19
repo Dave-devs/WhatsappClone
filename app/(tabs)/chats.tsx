@@ -5,6 +5,9 @@ import {
   Image,
   ScrollView,
   FlatList,
+  Pressable,
+  TouchableOpacity,
+  Text,
 } from "react-native";
 import React, { useContext, useState } from "react";
 import { ThemeContext, ThemeMode } from "@/context/ThemeContext";
@@ -18,10 +21,16 @@ import ChatItem from "@/components/ChatItem";
 import chats from "@/assets/data/chats.json";
 import * as Haptics from "expo-haptics";
 import SwipeableRow from "@/components/SwipeableRow";
+import DropdownItem from "@/components/DropdownItem";
 
 const ChatsScreen = () => {
   const router = useRouter();
   const insets = useSafeAreaInsets();
+
+  const [ellipsisOpen, setEllipsisOpen] = useState(false);
+  const handleEllipsisOpen = () => {
+    setEllipsisOpen(!ellipsisOpen);
+  };
 
   const { mode, updateTheme } = useContext(ThemeContext);
   // Determine active mode based on current theme mode or system appearance
@@ -47,6 +56,8 @@ const ChatsScreen = () => {
         { backgroundColor: activeColors.background },
         defaultStyles.container,
       ]}
+      onMomentumScrollBegin={() => setEllipsisOpen(false)}
+      onAccessibilityTap={() => setEllipsisOpen(false)}
     >
       <Stack.Screen
         options={{
@@ -58,17 +69,19 @@ const ChatsScreen = () => {
           },
           headerRight: () => {
             return (
-              <View style={defaultStyles.headerIcon}>
+              <View style={[defaultStyles.headerIcon, { marginRight: 10 }]}>
                 <Image
                   source={require("@/assets/images/camera.png")}
                   style={{ width: 27, height: 27 }}
                   tintColor={activeColors.text}
                 />
-                <Ionicons
-                  name="ellipsis-vertical"
-                  size={20}
-                  color={activeColors.text}
-                />
+                <TouchableOpacity onPress={handleEllipsisOpen}>
+                  <Ionicons
+                    name="ellipsis-vertical"
+                    size={20}
+                    color={activeColors.text}
+                  />
+                </TouchableOpacity>
               </View>
             );
           },
@@ -85,18 +98,47 @@ const ChatsScreen = () => {
         data={items}
         renderItem={({ item }) => (
           <SwipeableRow onDelete={() => deleteChat(item)}>
-            <ChatItem
-              image={item.imageUrl}
-              name={item.name}
-              lastMsg={item.lastMsg}
-              date={item.date}
-            />
+            <Pressable
+              onPress={() =>
+                router.push({
+                  pathname: "/screens/message",
+                  params: {
+                    image: item.imageUrl,
+                    name: item.name,
+                  },
+                })
+              }
+            >
+              <ChatItem
+                image={item.imageUrl}
+                name={item.name}
+                lastMsg={item.lastMsg}
+                date={item.date}
+              />
+            </Pressable>
           </SwipeableRow>
         )}
         scrollEnabled={false}
         keyExtractor={(item) => item.id.toString()}
         style={{ marginBottom: insets.bottom + 140 }}
+        showsVerticalScrollIndicator={true}
       />
+
+      {ellipsisOpen && (
+        <View
+          style={[
+            defaultStyles.dropdownCotainer,
+            { backgroundColor: activeColors.background },
+          ]}
+        >
+          <DropdownItem onPress={() => {}} text="New group" />
+          <DropdownItem onPress={() => {}} text="New broadcast" />
+          <DropdownItem onPress={() => {}} text="Linked devices" />
+          <DropdownItem onPress={() => {}} text="Starred messages" />
+          <DropdownItem onPress={() => {}} text="Settings" />
+          <DropdownItem onPress={() => {}} text="Switch accounts" />
+        </View>
+      )}
     </ScrollView>
   );
 };

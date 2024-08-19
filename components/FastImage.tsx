@@ -1,11 +1,15 @@
 import { defaultStyles } from '@/constants/Styles'
 import FastImage from 'react-native-fast-image'
 
-export const YourImage = () => (
+type Props = {
+    uri: string
+}
+
+export const YourImage = ({uri}: Props) => (
     <FastImage
         style={defaultStyles.image}
         source={{
-            uri: 'https://xsgames.co/randomusers/assets/avatars/female/71.jpg',
+            uri: uri,
             priority: FastImage.priority.normal,
         }}
         resizeMode={FastImage.resizeMode.contain}

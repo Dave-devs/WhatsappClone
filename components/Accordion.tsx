@@ -82,7 +82,7 @@ const Accordion = ({ headerTitle, data, status }: AccordionProps) => {
                 status={status}
               />
             )}
-            scrollEnabled={true}
+            scrollEnabled={false}
             showsVerticalScrollIndicator={false}
           />
         </View>

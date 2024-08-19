@@ -130,6 +130,7 @@ function RootLayoutNav() {
       <Stack.Screen name="screens/otp" options={{ headerShown: false, headerBackVisible: false }} />
       <Stack.Screen name="screens/contact-picker" options={{ headerShown: false, headerBackVisible: false }} />
       <Stack.Screen name="screens/verify" options={{ headerShown: true, headerShadowVisible: false, headerBackVisible: false }} />
+      <Stack.Screen name="screens/message" options={{headerShown: true, headerShadowVisible: false}} />
     </Stack>
   );
 }
@@ -146,10 +147,10 @@ function AuthRedirect() {
 
     if (isSignedIn && !inTabsGroup) {
       // router.replace("(tabs)/chats");
-      router.replace("/(tabs)/updates");
+      router.replace("/(tabs)/chats");
     } else if (!isSignedIn) {
       // router.replace('screens/welcome');
-      router.replace("/(tabs)/updates");
+      router.replace("/(tabs)/chats");
     }
   }, [isLoaded, isSignedIn]);
 

@@ -10,8 +10,10 @@ type ColorScheme = {
   background: string;
   activeIcon: string;
   inactiveIcon: string;
-  chip: string;
+  senderChip: string;
+  receiverChip: string;
   statusIcon: string;
+  ellipsis: string;
 };
 
 export const Colors: Record<Exclude<ThemeMode, "system">, ColorScheme> = {
@@ -25,8 +27,10 @@ export const Colors: Record<Exclude<ThemeMode, "system">, ColorScheme> = {
     background: '#ffffff',
     activeIcon: '#075e54',
     inactiveIcon: '#000000',
-    chip: '',
-    statusIcon: '#FFFFFF'
+    senderChip: '#b7efc5',
+    receiverChip: '#ffffff',
+    statusIcon: '#FFFFFF',
+    ellipsis: '#f8f9fa'
   },
   dark: {
     primary: "#00e600",
@@ -38,7 +42,9 @@ export const Colors: Record<Exclude<ThemeMode, "system">, ColorScheme> = {
     background: '#001219',
     activeIcon: '#d8f3dc',
     inactiveIcon: '#FFFFFF',
-    chip: '',
-    statusIcon: '#000000'
+    senderChip: '#247b7b',
+    receiverChip: '#00171f',
+    statusIcon: '#000000',
+    ellipsis: '#1b263b'
   },
 };

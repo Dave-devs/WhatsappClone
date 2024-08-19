@@ -5,7 +5,6 @@ import CustomContainer from '@/components/CustomComponets/CustomContainer';
 import CustomText from '@/components/CustomComponets/CustomText';
 import { Colors } from '@/constants/Colors';
 
-
 const CommunitiesScreen = () => {
     const { mode, updateTheme } = useContext(ThemeContext);
 
