@@ -7,13 +7,14 @@ import {
   TouchableOpacity,
   ImageBackground,
   Pressable,
+  useWindowDimensions,
 } from "react-native";
-import React, { useContext, useState, useEffect, useCallback } from "react";
+import React, { useContext, useState, useEffect, useCallback, useRef } from "react";
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { ThemeContext, ThemeMode } from "@/context/ThemeContext";
 import { Colors } from "@/constants/Colors";
 import { defaultStyles } from "@/constants/Styles";
-import { Ionicons } from "@expo/vector-icons";
+import { Entypo, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import {
   GiftedChat,
   Bubble,
@@ -26,10 +27,14 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import messageData from "@/assets/data/messages.json";
 import DropdownItem from "@/components/DropdownItem";
+import { Swipeable, TextInput } from "react-native-gesture-handler";
+import ReplyMessageBar from "@/components/ReplyMessageBar";
+import ChatMessageBox from "@/components/ChatMessageBox";
 
 const Message = () => {
   const router = useRouter();
   const params = useLocalSearchParams();
+  const screenWidth = useWindowDimensions().width;
   const insets = useSafeAreaInsets();
 
   const [ellipsisOpen, setEllipsisOpen] = useState(false);
@@ -38,7 +43,9 @@ const Message = () => {
   };
 
   const [messages, setMessages] = useState<IMessage[]>([]);
-  const [text, setText] = useState("");
+  const [text, setText] = useState<string>("");
+  const [replyMessage, setReplyMessage] = useState<IMessage | null>(null);
+  const swipeableRowRef = useRef<Swipeable | null>(null);
 
   useEffect(() => {
     setMessages([
@@ -65,6 +72,116 @@ const Message = () => {
       },
     ]);
   }, []);
+
+  const renderInputToolbar = (props: any) => {
+    return (
+      <InputToolbar
+        {...props}
+        containerStyle={{ backgroundColor: "blue" }}
+        renderActions={() => (
+          <View
+            style={{
+              height: 44,
+              justifyContent: "center",
+              alignItems: "center",
+              left: 5,
+            }}
+          >
+            <Ionicons name="add" color={"red"} size={28} />
+          </View>
+        )}
+      />
+    );
+  };
+
+  const updateRowRef = useCallback(
+    (ref: any) => {
+      if (
+        ref &&
+        replyMessage &&
+        ref.props.children.props.currentMessage?._id === replyMessage._id
+      ) {
+        swipeableRowRef.current = ref;
+      }
+    },
+    [replyMessage]
+  );
+
+  useEffect(() => {
+    if (replyMessage && swipeableRowRef.current) {
+      swipeableRowRef.current.close();
+      swipeableRowRef.current = null;
+    }
+  }, [replyMessage]);
+
+  const renderBarr = (props: any) => {
+    return (
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          marginHorizontal: 5,
+          gap: 8,
+          position: "absolute",
+          bottom: 4,
+          flex: 1
+        }}
+      >
+        {/* TextInput, Emoji, Link, Camera Container  */}
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            padding: 8,
+            backgroundColor: activeColors.background,
+            height: 50,
+            width: screenWidth - 65,
+            borderRadius: 50,
+            gap: 10
+          }}
+        >
+          {/* Emoji */}
+          <Entypo name="emoji-happy" size={20} color={activeColors.text} />
+          {/* TextInput */}
+          <TextInput
+          value={text}
+          onChangeText={setText}
+          placeholder="Message"
+          style={{color: text.length > 1 ? activeColors.text : 'grey', width: 173, fontFamily: 'nunitoSB',  }}
+          numberOfLines={5}
+          placeholderTextColor={activeColors.tint}
+          />
+          {/* Lat Two Icons */}
+          <View style={{flexDirection:  "row", alignItems: "center", gap: 15}}>
+            <MaterialCommunityIcons name="paperclip" size={20} color={activeColors.text} />
+            <Image source={require('@/assets/images/camera.png')} style={[styles.image]} tintColor={activeColors.text} />
+          </View>
+
+        </View>
+
+        <View
+          style={{
+            height: 50,
+            width: 50,
+            borderRadius: 50,
+            backgroundColor: activeColors.primary,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {
+            text.length > 0 ? (
+              <Image source={require('@/assets/images/camera.png')} style={[styles.image]} tintColor={activeColors.text} />
+            ) : (
+                <Image source={require('@/assets/images/mic.png')} style={[styles.mic]} tintColor={activeColors.background} />
+            )
+          }
+          
+        </View>
+      </View>
+    );
+  };
 
   const onSend = useCallback((messages = []) => {
     setMessages((previousMessages) =>
@@ -164,16 +281,16 @@ const Message = () => {
         }}
         onAccessibilityTap={() => setEllipsisOpen(!ellipsisOpen)}
       >
-        
-          <GiftedChat
-            messages={messages}
-            onSend={(messages: any) => onSend(messages)}
-            user={{
-              _id: 1,
-            }}
-            renderAvatar={() => null}
-            renderBubble={(props: Readonly<BubbleProps<IMessage>>) => {
-              return (
+        <GiftedChat
+          messages={messages}
+          onSend={(messages: any) => onSend(messages)}
+          user={{
+            _id: 1,
+          }}
+          renderAvatar={() => null}
+          renderBubble={(props: Readonly<BubbleProps<IMessage>>) => {
+            return (
+              <View style={{paddingBottom: insets.bottom + 5}}>
                 <Bubble
                   {...props}
                   textStyle={{
@@ -193,36 +310,68 @@ const Message = () => {
                     },
                   }}
                 />
-              );
-            }}
-          // renderMessage={(props) => {
-          //   return (
-          //     <View {...props}>
-
-          //     </View>
-          //   )
-          // }}
+              </View>
+            );
+          }}
           onPress={handleEllipsisOpen}
-          />
-
-          {ellipsisOpen && (
-            <View
-              style={[
-                defaultStyles.dropdownCotainer,
-                { backgroundColor: activeColors.background },
-              ]}
-            >
-              <DropdownItem onPress={() => { }} text="Add to contacts" />
-              <DropdownItem onPress={() => { }} text="Media, links, and docs" />
-              <DropdownItem onPress={() => { }} text="Search" />
-              <DropdownItem onPress={() => { }} text="Mute notifications" />
-              <DropdownItem onPress={() => { }} text="Disappearing messages" />
-              <DropdownItem onPress={() => { }} text="Wallpaper" />
-              <DropdownItem onPress={() => { }} text="More" />
-            </View>
+          // renderSend={(props) => (
+          //   <View
+          //     style={[styles.send, { backgroundColor: activeColors.primary }]}
+          //   >
+          //     {text.length > 1 ? (
+          //       // <Send
+          //       //   {...props}
+          //       //   containerStyle={{
+          //       //     justifyContent: "center",
+          //       //   }}
+          //       // >
+          //       //   <Ionicons name="send" size={24} color={activeColors.text} />
+          //       // </Send>
+          //       <Ionicons name="send" size={24} color={activeColors.text} />
+          //     ) : (
+          //       // <Image
+          //       //   source={require("@/assets/images/mic.png")}
+          //       //   style={[styles.mic]}
+          //       // />
+          //       <Ionicons
+          //         name="send"
+          //         size={18}
+          //         color={activeColors.background}
+          //       />
+          //     )}
+          //   </View>
+          // )}
+          renderInputToolbar={renderBarr}
+          renderChatFooter={() => (
+            <ReplyMessageBar clearReply={() => setReplyMessage(null)} message={replyMessage} />
           )}
+          onLongPress={(context, message) => setReplyMessage(message)}
+          renderMessage={(props) => (
+            <ChatMessageBox
+              {...props}
+              setReplyOnSwipeOpen={setReplyMessage}
+              updateRowRef={updateRowRef}
+            />
+          )}
+        />
+
+        {ellipsisOpen && (
+          <View
+            style={[
+              defaultStyles.dropdownCotainer,
+              { backgroundColor: activeColors.background },
+            ]}
+          >
+            <DropdownItem onPress={() => {}} text="Add to contacts" />
+            <DropdownItem onPress={() => {}} text="Media, links, and docs" />
+            <DropdownItem onPress={() => {}} text="Search" />
+            <DropdownItem onPress={() => {}} text="Mute notifications" />
+            <DropdownItem onPress={() => {}} text="Disappearing messages" />
+            <DropdownItem onPress={() => {}} text="Wallpaper" />
+            <DropdownItem onPress={() => {}} text="More" />
+          </View>
+        )}
       </ImageBackground>
-      
     </View>
   );
 };
@@ -247,5 +396,30 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     resizeMode: "cover",
     backgroundColor: "red",
+  },
+  send: {
+    height: 50,
+    width: 50,
+    borderRadius: 50,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  image: {
+    height: 24,
+    width: 24,
+  },
+  mic: {
+    height: 18,
+    width: 18
+  },
+  composer: {
+    backgroundColor: '#fff',
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: 'lightGrey',
+    paddingHorizontal: 10,
+    paddingTop: 8,
+    fontSize: 16,
+    marginVertical: 4,
   },
 });
