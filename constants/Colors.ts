@@ -23,7 +23,7 @@ export const Colors: Record<Exclude<ThemeMode, "system">, ColorScheme> = {
     tertiary: "#075e54",
     accent: '#f5f3f4',
     text: '#000000',
-    tint: "#c3cad5",
+    tint: "#adb5bd",
     background: '#ffffff',
     activeIcon: '#075e54',
     inactiveIcon: '#000000',

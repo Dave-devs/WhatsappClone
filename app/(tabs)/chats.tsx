@@ -15,7 +15,7 @@ import { Colors } from "@/constants/Colors";
 import { Stack, useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { defaultStyles } from "@/constants/Styles";
-import { Ionicons } from "@expo/vector-icons";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 import SearchBar from "@/components/SearchBar";
 import ChatItem from "@/components/ChatItem";
 import chats from "@/assets/data/chats.json";
@@ -51,106 +51,153 @@ const ChatsScreen = () => {
   };
 
   return (
-    <ScrollView
-      style={[
-        { backgroundColor: activeColors.background },
-        defaultStyles.container,
-      ]}
-      onMomentumScrollBegin={() => setEllipsisOpen(false)}
-      onAccessibilityTap={() => setEllipsisOpen(false)}
-    >
-      <Stack.Screen
-        options={{
-          headerShown: true,
-          headerTitle: "WhatsApp",
-          headerTitleStyle: {
-            ...defaultStyles.headerTextStyle,
-            color: activeColors.text,
-          },
-          headerRight: () => {
-            return (
-              <View style={[defaultStyles.headerIcon, { marginRight: 10 }]}>
-                <Image
-                  source={require("@/assets/images/camera.png")}
-                  style={{ width: 27, height: 27 }}
-                  tintColor={activeColors.text}
-                />
-                <TouchableOpacity onPress={handleEllipsisOpen}>
-                  <Ionicons
-                    name="ellipsis-vertical"
-                    size={20}
-                    color={activeColors.text}
+    <>
+      <ScrollView
+        style={[
+          { backgroundColor: activeColors.background },
+          defaultStyles.container,
+        ]}
+        onMomentumScrollBegin={() => setEllipsisOpen(false)}
+        onAccessibilityTap={() => setEllipsisOpen(false)}
+      >
+        <Stack.Screen
+          options={{
+            headerShown: true,
+            headerTitle: "WhatsApp",
+            headerTitleStyle: {
+              ...defaultStyles.headerTextStyle,
+              color: activeColors.text,
+            },
+            headerRight: () => {
+              return (
+                <View style={[defaultStyles.headerIcon, { marginRight: 10 }]}>
+                  <Image
+                    source={require("@/assets/images/camera.png")}
+                    style={{ width: 27, height: 27 }}
+                    tintColor={activeColors.text}
                   />
-                </TouchableOpacity>
-              </View>
-            );
-          },
-          headerShadowVisible: false,
-          headerStyle: {
-            backgroundColor: activeColors.background,
-          },
-        }}
-      />
-      {/* Search Bar */}
-      <SearchBar />
-      {/* Chats */}
-      <FlatList
-        data={items}
-        renderItem={({ item }) => (
-          <SwipeableRow onDelete={() => deleteChat(item)}>
-            <Pressable
-              onPress={() =>
-                router.push({
-                  pathname: "/screens/message",
-                  params: {
-                    image: item.imageUrl,
-                    name: item.name,
-                  },
-                })
-              }
-            >
-              <ChatItem
-                image={item.imageUrl}
-                name={item.name}
-                lastMsg={item.lastMsg}
-                date={item.date}
-              />
-            </Pressable>
-          </SwipeableRow>
-        )}
-        scrollEnabled={false}
-        keyExtractor={(item) => item.id.toString()}
-        style={{ marginBottom: insets.bottom + 140 }}
-        showsVerticalScrollIndicator={true}
-      />
+                  <TouchableOpacity onPress={handleEllipsisOpen}>
+                    <Ionicons
+                      name="ellipsis-vertical"
+                      size={20}
+                      color={activeColors.text}
+                    />
+                  </TouchableOpacity>
+                </View>
+              );
+            },
+            headerShadowVisible: false,
+            headerStyle: {
+              backgroundColor: activeColors.background,
+            },
+          }}
+        />
+        {/* Search Bar */}
+        <SearchBar />
+        {/* Chats */}
+        <FlatList
+          data={items}
+          renderItem={({ item }) => (
+            <SwipeableRow onDelete={() => deleteChat(item)}>
+              <Pressable
+                onPress={() =>
+                  router.push({
+                    pathname: "/screens/message",
+                    params: {
+                      image: item.imageUrl,
+                      name: item.name,
+                    },
+                  })
+                }
+              >
+                <ChatItem
+                  image={item.imageUrl}
+                  name={item.name}
+                  lastMsg={item.lastMsg}
+                  date={item.date}
+                />
+              </Pressable>
+            </SwipeableRow>
+          )}
+          scrollEnabled={false}
+          keyExtractor={(item) => item.id.toString()}
+          showsVerticalScrollIndicator={true}
+        />
 
-      {ellipsisOpen && (
+        {ellipsisOpen && (
+          <View
+            style={[
+              defaultStyles.dropdownCotainer,
+              { backgroundColor: activeColors.background },
+            ]}
+          >
+            <DropdownItem onPress={() => { }} text="New group" />
+            <DropdownItem onPress={() => { }} text="New broadcast" />
+            <DropdownItem onPress={() => { }} text="Linked devices" />
+            <DropdownItem onPress={() => { }} text="Starred messages" />
+            <DropdownItem onPress={() => { }} text="Settings" />
+            <DropdownItem onPress={() => { }} text="Switch accounts" />
+          </View>
+        )}
+        <View style={[styles.separator, { borderColor: activeColors.tint }]} />
+
         <View
-          style={[
-            defaultStyles.dropdownCotainer,
-            { backgroundColor: activeColors.background },
-          ]}
+          style={[styles.textContainer, { marginBottom: insets.bottom + 120 }]}
         >
-          <DropdownItem onPress={() => {}} text="New group" />
-          <DropdownItem onPress={() => {}} text="New broadcast" />
-          <DropdownItem onPress={() => {}} text="Linked devices" />
-          <DropdownItem onPress={() => {}} text="Starred messages" />
-          <DropdownItem onPress={() => {}} text="Settings" />
-          <DropdownItem onPress={() => {}} text="Switch accounts" />
+          <AntDesign name="lock" size={13} color={activeColors.text} />
+          <Text style={[styles.text, { color: activeColors.tint }]}>
+            Your personal messages are{" "}
+            <Text style={{ color: activeColors.primary }}>
+              end-to-end encrypted
+            </Text>
+          </Text>
         </View>
-      )}
-    </ScrollView>
+      </ScrollView>
+
+      {/* FAB */}
+      <View style={[styles.fabContainer, {backgroundColor: activeColors.primary}]}>
+        <TouchableOpacity onPress={() => { }}>
+          <Image
+            source={require("@/assets/images/message.png")}
+            style={styles.fab}
+            tintColor={activeColors.background}
+          />
+        </TouchableOpacity>
+      </View>
+    </>
+    
   );
 };
 
 export default ChatsScreen;
 
 const styles = StyleSheet.create({
-  headerIcon: {
+  separator: {
+    borderWidth: StyleSheet.hairlineWidth,
+  },
+  textContainer: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 25,
-    marginRight: 10,
-    alignContent: "center",
+    justifyContent: "center",
+    gap: 10,
+    marginTop: 15,
+  },
+  text: {
+    fontFamily: "nunito",
+    fontSize: 11,
+  },
+  fabContainer: {
+    height: 58,
+    width: 58,
+    position: "absolute",
+    bottom: 20,
+    right: 15,
+    borderRadius: 15,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  fab: {
+    height: 26,
+    width: 26,
   },
 });
